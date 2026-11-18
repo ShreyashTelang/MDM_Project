@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screening History | ECG AI</title>
+    <link rel="stylesheet" href="/static/css/style.css?v=2.2">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Sticky White Navbar -->
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+        <div class="nav-container">
+            <a href="/" class="brand">
+                <i data-lucide="activity" class="brand-icon"></i>
+                <span>ECG AI Screening</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <i data-lucide="menu"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/analysis" class="nav-link">ECG Analysis</a></li>
+                <li><a href="/history" class="nav-link active">History</a></li>
+                <li><a href="/about" class="nav-link">About &amp; Architecture</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Prominently Highlighted Healthcare Safety Warning -->
+    <div class="disclaimer-bar" role="alert">
+        <div class="disclaimer-inner">
+            <i data-lucide="alert-triangle"></i>
+            <span class="disclaimer-tag">Healthcare Safety Requirement</span>
+            <span>This system is intended for <strong>educational and research purposes only</strong>. It does not provide medical diagnosis or replace evaluation by a qualified healthcare professional.</span>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="main-container animate-fade-in">
+
+        <section class="card" aria-labelledby="history-heading">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.25rem; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-subtle);">
+                <div>
+                    <h1 id="history-heading" style="font-size: 1.75rem; font-weight: 800; color: var(--color-primary); margin-bottom: 0.35rem; letter-spacing: -0.02em;">
+                        Patient Screening Audit Trail
+                    </h1>
+                    <p style="color: var(--text-secondary); margin-bottom: 0; font-size: 0.95rem;">
+                        Persistent screening logs stored in the local research database for performance auditing.
+                    </p>
+                </div>
+                <div>
+                    <div style="position: relative;">
+                        <input type="text" id="historySearchInput" placeholder="Filter by ID, rhythm, or file..." 
+                               style="background: var(--bg-surface); border: 1px solid var(--border-medium); color: var(--text-primary); padding: 0.55rem 0.85rem 0.55rem 2.2rem; border-radius: var(--radius-btn); font-size: 0.88rem; width: 280px; font-family: var(--font-sans);">
+                        <i data-lucide="search" style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; color: var(--text-tertiary);"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sticky-Header Zebra-Free Audit Table -->
+            <div class="table-responsive">
+                <table class="history-table" id="historyTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Timestamp</th>
+                            <th>Source File</th>
+                            <th>Neural Prediction</th>
+                            <th>Confidence</th>
+                            <th>Heart Rate</th>
+                            <th>Cycles</th>
+                            <th>Status Summary</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if records and records|length > 0 %}
+                            {% for r in records %}
+                            <tr id="record-row-{{ r.id }}">
+                                <td><span class="mono-num" style="font-weight: 600; color: var(--text-secondary);">#{{ r.id }}</span></td>
+                                <td style="color: var(--text-secondary); font-size: 0.82rem;" class="mono-num">{{ r.date }}</td>
+                                <td><code style="color: var(--color-primary); background: var(--bg-surface-muted); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.82rem; font-family: var(--font-mono);">{{ r.filename }}</code></td>
+                                <td>
+                                    {% if r.is_abnormal %}
+                                        <span class="status-badge status-abnormal">
+                                            <i data-lucide="alert-triangle"></i> {{ r.primary_class }}
+                                        </span>
+                                    {% else %}
+                                        <span class="status-badge status-normal">
+                                            <i data-lucide="check"></i> {{ r.primary_class }}
+                                        </span>
+                                    {% endif %}
+                                </td>
+                                <td><span class="mono-num" style="font-weight: 600;">{{ r.confidence }}%</span></td>
+                                <td><span class="mono-num">{{ r.heart_rate }} BPM</span></td>
+                                <td><span class="mono-num">{{ r.total_beats }}</span></td>
+                                <td style="font-size: 0.84rem; color: var(--text-secondary); max-width: 280px; line-height: 1.45;">{{ r.status }}</td>
+                                <td>
+                                    <button class="btn btn-outline btn-sm" onclick="deleteHistoryRecord({{ r.id }})" title="Delete record" style="color: var(--color-alert); border-color: var(--border-subtle); padding: 0 0.5rem; min-height: 30px;">
+                                        <i data-lucide="trash-2" style="width: 14px; height: 14px;"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="9" style="text-align: center; padding: 3.5rem 1rem; color: var(--text-tertiary);">
+                                    <i data-lucide="inbox" style="width: 32px; height: 32px; margin: 0 auto 0.75rem; display: block; color: var(--text-tertiary);"></i>
+                                    <div style="font-weight: 600; font-size: 1rem; color: var(--text-primary); margin-bottom: 0.25rem;">No screening records stored yet</div>
+                                    <p style="font-size: 0.85rem; margin-bottom: 1rem;">Execute an analysis via file upload or sample testing to populate the audit table.</p>
+                                    <a href="/analysis" class="btn btn-primary btn-sm">
+                                        <i data-lucide="upload-cloud"></i> Analyze First ECG
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem; font-size: 0.82rem; color: var(--text-tertiary);">
+                <span>Audit standard: ISO/IEEE 11073 Point-of-Care Medical Device Communications</span>
+                <span>Active Database: SQLite Fallback Engine / MySQL Production Compatible</span>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Minimal Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <div class="footer-left">
+                <span class="footer-brand">ECG AI Screening</span>
+                <span>Department of Computer Engineering • Academic Capstone Research Prototype</span>
+            </div>
+            <div class="footer-right">
+                <span>Educational and research screening tool • Strictly not for medical diagnosis • &copy; 2026</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
