@@ -375,7 +375,7 @@ function initFilterTable() {
 }
 
 function deleteHistoryRecord(recordId) {
-    if (!confirm(`Are you sure you want to delete screening record #${recordId}?`)) return;
+    if (!confirm('Are you sure you want to delete this screening record?')) return;
 
     fetch(`/api/history/delete/${recordId}`, { method: 'POST' })
         .then(res => res.json())
