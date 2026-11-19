@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECG Analysis &amp; Waveform Screening | ECG AI</title>
-    <link rel="stylesheet" href="/static/css/style.css?v=2.2">
+    <link rel="stylesheet" href="/static/css/style.css?v=2.3">
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Lucide Icons -->
@@ -84,10 +84,10 @@
                 <input type="file" id="ecgFileInput" class="file-input" accept=".csv,.txt,.dat,.npy">
             </div>
 
-            <!-- Pre-Configured Benchmark Samples -->
+            <!-- Pre-Configured Benchmark Samples in One Single Line -->
             <div class="samples-strip">
-                <span style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 600;">
-                    Or evaluate with pre-conditioned MIT-BIH recordings:
+                <span class="samples-label">
+                    Pre-conditioned clinical presets:
                 </span>
                 <button type="button" class="sample-btn" data-sample="normal">
                     <i data-lucide="check-circle" style="color: var(--color-accent);"></i> Normal Sinus Rhythm (Rec 100)
