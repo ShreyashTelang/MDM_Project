@@ -1,0 +1,100 @@
+{
+  "Logistic Regression": {
+    "accuracy": 0.55,
+    "balanced_accuracy": 0.55,
+    "precision": 0.5454545454545454,
+    "recall_sensitivity": 0.6,
+    "specificity": 0.5,
+    "f1": 0.5714285714285714,
+    "roc_auc": 0.44999999999999996,
+    "confusion_matrix": [
+      [
+        5,
+        5
+      ],
+      [
+        4,
+        6
+      ]
+    ],
+    "tp": 6,
+    "tn": 5,
+    "fp": 5,
+    "fn": 4,
+    "cv_roc_auc_mean": 1.0,
+    "cv_roc_auc_std": 0.0
+  },
+  "Random Forest": {
+    "accuracy": 0.35,
+    "balanced_accuracy": 0.35,
+    "precision": 0.2857142857142857,
+    "recall_sensitivity": 0.2,
+    "specificity": 0.5,
+    "f1": 0.23529411764705882,
+    "roc_auc": 0.44000000000000006,
+    "confusion_matrix": [
+      [
+        5,
+        5
+      ],
+      [
+        8,
+        2
+      ]
+    ],
+    "tp": 2,
+    "tn": 5,
+    "fp": 5,
+    "fn": 8,
+    "cv_roc_auc_mean": 0.996875,
+    "cv_roc_auc_std": 0.00625
+  },
+  "Support Vector Machine": {
+    "accuracy": 0.55,
+    "balanced_accuracy": 0.55,
+    "precision": 0.5454545454545454,
+    "recall_sensitivity": 0.6,
+    "specificity": 0.5,
+    "f1": 0.5714285714285714,
+    "roc_auc": 0.48,
+    "confusion_matrix": [
+      [
+        5,
+        5
+      ],
+      [
+        4,
+        6
+      ]
+    ],
+    "tp": 6,
+    "tn": 5,
+    "fp": 5,
+    "fn": 4,
+    "cv_roc_auc_mean": 1.0,
+    "cv_roc_auc_std": 0.0
+  },
+  "Graph Convolutional Network (GCN)": {
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "precision": 0.5,
+    "recall_sensitivity": 1.0,
+    "specificity": 0.0,
+    "f1": 0.6666666666666666,
+    "roc_auc": 0.6,
+    "confusion_matrix": [
+      [
+        0,
+        10
+      ],
+      [
+        0,
+        10
+      ]
+    ],
+    "tp": 10,
+    "tn": 0,
+    "fp": 10,
+    "fn": 0
+  }
+}

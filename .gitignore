@@ -1,25 +1,19 @@
-# Byte-compiled / optimized files
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Environments & secrets
-.env
-.env.local
-venv/
+# Caches
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Virtual environments
 env/
+venv/
 .venv/
+.env
 
-# Runtime user uploads (keep directory with .gitkeep)
-uploads/*
-!uploads/.gitkeep
-
-# IDEs and OS files
-.vscode/
-.idea/
+# OS artifacts
 .DS_Store
 Thumbs.db
 Desktop.ini
-
-# Logs & temp
-*.log

@@ -1,0 +1,5 @@
+Model,Accuracy,Balanced Acc,Sensitivity (Recall),Specificity,F1-Score,ROC-AUC
+Logistic Regression,55.00%,55.00%,60.00%,50.00%,0.5714,0.4500
+Random Forest,35.00%,35.00%,20.00%,50.00%,0.2353,0.4400
+Support Vector Machine,55.00%,55.00%,60.00%,50.00%,0.5714,0.4800
+Graph Convolutional Network (GCN),50.00%,50.00%,100.00%,0.00%,0.6667,0.6000
